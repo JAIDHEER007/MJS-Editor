@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mermaid Editor</title>
+</head>
+<body>
+    <div>
+        <form method="post" action="{{ url_for('home') }}">
+            <table>
+                <tr>
+                    <td>Mermaid Name</td>
+                    <td><input type="text" name="mermaid_name"></td>
+                </tr>
+                <tr>
+                    <td>Mermaid Description</td>
+                    <td><textarea name="mermaid_description"></textarea></td>
+                </tr>
+            </table>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <br><br>
+    <div>
+        <table border="1">
+            {% for mermaid in mermaids %}
+            <tr>
+                <td><a href="{{ url_for('show_mermaid', mermaid_id = mermaid.unique_id) }}">{{ mermaid.name }}</a></td>
+                <td>{{ mermaid.created_date }}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+</body>
+</html>

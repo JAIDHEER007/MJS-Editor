@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mermaid</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+    <script>
+      $SCRIPT_ROOT = {{ request.script_root | tojson }};
+    </script>
+    <script src = "{{ url_for('static', filename='js/mermaid_helper.js') }}"></script>
+</head>
+<body>
+    <a href="{{ url_for('home') }}">Home</a><br><br>
+    <table border="1">
+        <tr>
+            <td>Unique ID</td>
+            <td colspan="2" id="unique_id">{{ mermaid.unique_id }}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{ mermaid.name }}</td>
+            <td align="center"><a href="#" id="edit_mermaid_name"><button>Edit</button></a></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><textarea cols="30" rows="10" readonly>{{ mermaid.description }}</textarea></td>
+            <td align="center"><a href="#" id="edit_mermaid_description"><button>Edit</button></a></td>
+        </tr>
+        <tr>
+            <td>Created Date</td>
+            <td colspan="2">{{ mermaid.created_date }}</td>
+        </tr>
+        <tr>
+            <td>Folder Path</td>
+            <td colspan="2"><input type="textbox" style="width: {{ mermaid.folder_path | length }}ch;" value="{{ mermaid.folder_path }}" readonly></td>
+        </tr>
+        <tr><td colspan="3" align="center"><a href="" id="delete_mermaid"><button>Delete Mermaid</button></a></td></tr>
+        <tr>
+            <td colspan="3" align="center">
+                <table>
+                    <tr><td>
+                        <a href="#" id="open_codefile"><button>Open Code File</button></a>
+                    </td><td>
+                        <a href="{{ url_for('show_mermaidcode', mermaid_id = mermaid.unique_id) }}" target="_blank"><button>Open Mermaid File</button></a>
+                    </td><td>
+                        <a href="{{ url_for('show_mermaidrender', mermaid_id = mermaid.unique_id) }}" target="_blank"><button>Open Render</button></a>
+                    </td><td>
+                        <a href="{{ url_for('view_svg', mermaid_id = mermaid.unique_id) }}" target="_blank"><button>View SVG</button></a>
+                    </td></tr>
+                </table>
+            </td>  
+        </tr>
+    </table>
+    <br><br>
+    <div id="editor"></div>
+    <br>
+    <a href="#" id="codearea_save"><button>Save</button></a>
+    <script src = "{{ url_for('static', filename='js/codearea.js') }}"></script>
+</body>
+</html>

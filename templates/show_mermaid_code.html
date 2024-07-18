@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mermaid Code</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+    <script>
+      $SCRIPT_ROOT = {{ request.script_root | tojson }};
+    </script>
+    
+</head>
+<body>
+    <div id="editor"></div>
+    <script src = "{{ url_for('static', filename='js/open_mermaid_code.js') }}"></script>
+</body>
+</html>

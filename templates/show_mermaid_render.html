@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mermaid Render</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src = "{{ url_for('static', filename='js/open_mermaid_render.js') }}"></script>
+    <script>
+      $SCRIPT_ROOT = {{ request.script_root | tojson }};
+    </script>
+</head>
+<body>
+  <div>
+    <pre class="mermaid" id="mermaid_code">
+      {{ mermaid_code }}
+    </pre>
+    <a href="#" id="save_svg"><button>Save SVG</button></a>
+  </div>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  </script>
+</body>
+</html>
